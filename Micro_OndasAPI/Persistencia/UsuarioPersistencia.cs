@@ -54,7 +54,21 @@ namespace Micro_OndasAPI.Persistencia
 
                 dr = cmd.ExecuteReader();
 
-                retornoMensagem = "teste concluido";
+                cmd = conexao.CreateCommand();
+
+                sql = "Select id from usuario where login = @login";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.AddWithValue("@login", usuModel.login);
+                dr = cmd.ExecuteReader();
+
+                if (dr.HasRows) { 
+                    dr.Read();
+                    usuModel.id = dr.GetInt32(dr.GetOrdinal("id"));
+
+                }
+
+                retornoMensagem = "Usuario Criado com Sucesso";
                 retornoStatus = true;
             }
             catch (Exception ex)
@@ -70,6 +84,77 @@ namespace Micro_OndasAPI.Persistencia
             retorno.Status = retornoStatus;
             return retorno;
 
+        }
+
+        public RetornoPadraoModel Login(UsuarioLoginModel usuario) {
+            SQLiteCommand cmd = new SQLiteCommand();
+            SQLiteDataReader dr;
+
+            DataTable dt = new DataTable();
+
+            string sql = "";
+            string retornoMensagem = "";
+
+            int usuario_id = 0;
+
+            bool retornoStatus = false;
+
+            try
+            {
+
+                using (SHA256 sha256 = SHA256.Create())
+                {
+                    byte[] bytes = Encoding.UTF8.GetBytes(usuario.senha);
+                    byte[] hash = sha256.ComputeHash(bytes);
+
+                    StringBuilder builder = new StringBuilder();
+                    foreach (var b in hash)
+                        builder.Append(b.ToString("x2"));
+
+                    usuario.senha = builder.ToString();
+                }
+
+                var conexao = Global.CriarConexao();
+
+                conexao.Open();
+
+                cmd = conexao.CreateCommand();
+
+                sql = "select id from usuario where login = @login and senha = @senha";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.AddWithValue("@login", usuario.login);
+                cmd.Parameters.AddWithValue("@senha", usuario.senha);
+
+
+                dr = cmd.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    usuario_id = dr.GetInt32(dr.GetOrdinal("id"));
+
+                    retornoMensagem = "Login e Senha Corretos";
+                    retornoStatus = true;
+                }
+                else {
+                    retornoMensagem = "Login ou Senha Incorretos";
+                }
+
+                
+            }
+            catch (Exception ex)
+            {
+                retornoMensagem = "Falha: " + ex.Message;
+            }
+
+            Global.FecharConexao();
+
+            RetornoPadraoModel retorno = new RetornoPadraoModel();
+            retorno.Data = usuario_id;
+            retorno.Mensagem = retornoMensagem;
+            retorno.Status = retornoStatus;
+            return retorno;
         }
 
     }

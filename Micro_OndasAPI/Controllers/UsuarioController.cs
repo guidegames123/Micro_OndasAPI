@@ -20,5 +20,13 @@ namespace Micro_OndasAPI.Controllers
             UsuarioPersistencia usu = new UsuarioPersistencia();
             return usu.CriarUsuario(u);
         }
+
+        [HttpGet]
+        [Route("Login")]
+        public RetornoPadraoModel login([FromBody] UsuarioLoginModel u)
+        {
+            UsuarioPersistencia usu = new UsuarioPersistencia();
+            return usu.Login(u);
+        }
     }
 }
