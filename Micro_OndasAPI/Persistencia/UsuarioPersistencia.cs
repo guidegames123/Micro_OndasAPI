@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 
 namespace Micro_OndasAPI.Persistencia
@@ -23,6 +25,19 @@ namespace Micro_OndasAPI.Persistencia
             bool retornoStatus = false;
             try
             {
+
+                using (SHA256 sha256 = SHA256.Create())
+                {
+                    byte[] bytes = Encoding.UTF8.GetBytes(usuModel.senha);
+                    byte[] hash = sha256.ComputeHash(bytes);
+
+                    StringBuilder builder = new StringBuilder();
+                    foreach (var b in hash)
+                        builder.Append(b.ToString("x2"));
+
+                    usuModel.senha = builder.ToString();
+                }
+
                 var conexao = Global.CriarConexao();
 
                 conexao.Open();
