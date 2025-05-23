@@ -60,6 +60,7 @@
             btnEntrar.TabIndex = 2;
             btnEntrar.Text = "Entrar";
             btnEntrar.UseVisualStyleBackColor = true;
+            btnEntrar.Click += btnEntrar_Click;
             // 
             // label2
             // 
@@ -74,6 +75,7 @@
             // 
             txtSenha.Location = new Point(40, 71);
             txtSenha.Name = "txtSenha";
+            txtSenha.PasswordChar = '*';
             txtSenha.Size = new Size(107, 23);
             txtSenha.TabIndex = 3;
             // 

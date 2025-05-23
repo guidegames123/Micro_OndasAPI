@@ -21,7 +21,7 @@ namespace Micro_OndasAPI.Controllers
             return usu.CriarUsuario(u);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("Login")]
         public RetornoPadraoModel login([FromBody] UsuarioLoginModel u)
         {

@@ -44,9 +44,10 @@ namespace AplicativoDesk.Telas
             if (retorno.Status == true)
             {
                 MessageBox.Show("Inserido com Sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Close();
             }
             else {
-                MessageBox.Show("OPS... Algo deu errado: "+retorno.Mensagem, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("OPS... Algo deu errado: "+retorno.Mensagem, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
