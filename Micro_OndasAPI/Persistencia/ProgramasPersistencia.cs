@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Core.Common;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Linq;
 using System.Security.Cryptography;
@@ -17,8 +18,8 @@ namespace Micro_OndasAPI.Persistencia
 
         public RetornoPadraoModel CriarPrograma(ProgramaModel p)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            SQLiteDataReader dr;
+            var cmd = new SqlCommand();
+            SqlDataReader dr;
 
             DataTable dt = new DataTable();
 
@@ -81,8 +82,8 @@ namespace Micro_OndasAPI.Persistencia
 
         public RetornoPadraoModel Listar(int usuario_id)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            SQLiteDataReader dr;
+            var cmd = new SqlCommand();
+            SqlDataReader dr;
 
             ProgramaModel p;
 

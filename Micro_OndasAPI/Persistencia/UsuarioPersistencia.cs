@@ -3,6 +3,7 @@ using Micro_OndasAPI.Models.Usuario;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Linq;
 using System.Security.Cryptography;
@@ -15,8 +16,8 @@ namespace Micro_OndasAPI.Persistencia
     {
 
         public RetornoPadraoModel CriarUsuario(UsuarioModel usuModel) {
-            SQLiteCommand cmd = new SQLiteCommand();
-            SQLiteDataReader dr;
+            var cmd = new SqlCommand();
+            SqlDataReader dr;
 
             DataTable dt = new DataTable();
 
@@ -53,6 +54,7 @@ namespace Micro_OndasAPI.Persistencia
 
 
                 dr = cmd.ExecuteReader();
+                dr.Close();
 
                 cmd = conexao.CreateCommand();
 
@@ -87,8 +89,8 @@ namespace Micro_OndasAPI.Persistencia
         }
 
         public RetornoPadraoModel Login(UsuarioLoginModel usuario) {
-            SQLiteCommand cmd = new SQLiteCommand();
-            SQLiteDataReader dr;
+            var cmd = new SqlCommand();
+            SqlDataReader dr;
 
             DataTable dt = new DataTable();
 

@@ -61,6 +61,7 @@
             btnSalvar.TabIndex = 8;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // label1
             // 
@@ -107,7 +108,8 @@
             Controls.Add(label1);
             Controls.Add(txtLogin);
             Name = "frmCadastrar";
-            Text = "frmCadastrar";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Cadastrar";
             ResumeLayout(false);
             PerformLayout();
         }

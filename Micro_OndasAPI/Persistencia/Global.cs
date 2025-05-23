@@ -1,23 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.Linq;
-using System.Web;
+using System.Data.SqlClient;
 
 namespace Micro_OndasAPI.Persistencia
 {
     public class Global
     {
+        private static SqlConnection conexao;
 
-        private static SQLiteConnection conexao;
-
-        public static SQLiteConnection CriarConexao()
+        public static SqlConnection CriarConexao()
         {
             if (conexao == null)
             {
-                string caminho = "Data Source=" + AppDomain.CurrentDomain.BaseDirectory + "Micro_OndasBD.db;Version=3;";
-                conexao = new SQLiteConnection(caminho);
+                string conexaoString = @"Server=localhost\MSSQLSERVER01;Database=MicroOndasDB;Trusted_Connection=True;";
+                conexao = new SqlConnection(conexaoString);
             }
+
             return conexao;
         }
 
@@ -26,6 +23,5 @@ namespace Micro_OndasAPI.Persistencia
             if (conexao != null && conexao.State == System.Data.ConnectionState.Open)
                 conexao.Close();
         }
-
     }
 }
