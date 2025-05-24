@@ -45,6 +45,9 @@ namespace AplicativoDesk.Telas
             btnComecar = new Button();
             btnFuncao = new Button();
             btnCancelar = new Button();
+            btnPotencia = new Button();
+            lblPotencia = new Label();
+            lblTempoPotencia = new Label();
             SuspendLayout();
             // 
             // btn1
@@ -52,7 +55,7 @@ namespace AplicativoDesk.Telas
             btn1.BackColor = SystemColors.ControlDarkDark;
             btn1.Font = new Font("Segoe UI", 24F);
             btn1.ForeColor = Color.White;
-            btn1.Location = new Point(10, 232);
+            btn1.Location = new Point(196, 249);
             btn1.Name = "btn1";
             btn1.Size = new Size(75, 54);
             btn1.TabIndex = 1;
@@ -70,9 +73,9 @@ namespace AplicativoDesk.Telas
             lbVisor.BackColor = SystemColors.ControlDarkDark;
             lbVisor.Font = new Font("Segoe UI", 20F);
             lbVisor.ForeColor = Color.Orange;
-            lbVisor.Location = new Point(12, 9);
+            lbVisor.Location = new Point(12, 26);
             lbVisor.Name = "lbVisor";
-            lbVisor.Size = new Size(235, 100);
+            lbVisor.Size = new Size(608, 100);
             lbVisor.TabIndex = 3;
             lbVisor.Text = "00:00";
             lbVisor.TextAlign = ContentAlignment.MiddleCenter;
@@ -82,7 +85,7 @@ namespace AplicativoDesk.Telas
             btn2.BackColor = SystemColors.ControlDarkDark;
             btn2.Font = new Font("Segoe UI", 24F);
             btn2.ForeColor = Color.White;
-            btn2.Location = new Point(91, 232);
+            btn2.Location = new Point(277, 249);
             btn2.Name = "btn2";
             btn2.Size = new Size(75, 54);
             btn2.TabIndex = 1;
@@ -95,7 +98,7 @@ namespace AplicativoDesk.Telas
             btn3.BackColor = SystemColors.ControlDarkDark;
             btn3.Font = new Font("Segoe UI", 24F);
             btn3.ForeColor = Color.White;
-            btn3.Location = new Point(172, 232);
+            btn3.Location = new Point(358, 249);
             btn3.Name = "btn3";
             btn3.Size = new Size(75, 54);
             btn3.TabIndex = 1;
@@ -108,7 +111,7 @@ namespace AplicativoDesk.Telas
             btn4.BackColor = SystemColors.ControlDarkDark;
             btn4.Font = new Font("Segoe UI", 24F);
             btn4.ForeColor = Color.White;
-            btn4.Location = new Point(10, 172);
+            btn4.Location = new Point(196, 189);
             btn4.Name = "btn4";
             btn4.Size = new Size(75, 54);
             btn4.TabIndex = 1;
@@ -121,7 +124,7 @@ namespace AplicativoDesk.Telas
             btn5.BackColor = SystemColors.ControlDarkDark;
             btn5.Font = new Font("Segoe UI", 24F);
             btn5.ForeColor = Color.White;
-            btn5.Location = new Point(91, 172);
+            btn5.Location = new Point(277, 189);
             btn5.Name = "btn5";
             btn5.Size = new Size(75, 54);
             btn5.TabIndex = 1;
@@ -134,7 +137,7 @@ namespace AplicativoDesk.Telas
             btn6.BackColor = SystemColors.ControlDarkDark;
             btn6.Font = new Font("Segoe UI", 24F);
             btn6.ForeColor = Color.White;
-            btn6.Location = new Point(172, 172);
+            btn6.Location = new Point(358, 189);
             btn6.Name = "btn6";
             btn6.Size = new Size(75, 54);
             btn6.TabIndex = 1;
@@ -147,7 +150,7 @@ namespace AplicativoDesk.Telas
             btn7.BackColor = SystemColors.ControlDarkDark;
             btn7.Font = new Font("Segoe UI", 24F);
             btn7.ForeColor = Color.White;
-            btn7.Location = new Point(10, 112);
+            btn7.Location = new Point(196, 129);
             btn7.Name = "btn7";
             btn7.Size = new Size(75, 54);
             btn7.TabIndex = 1;
@@ -160,7 +163,7 @@ namespace AplicativoDesk.Telas
             btn8.BackColor = SystemColors.ControlDarkDark;
             btn8.Font = new Font("Segoe UI", 24F);
             btn8.ForeColor = Color.White;
-            btn8.Location = new Point(91, 112);
+            btn8.Location = new Point(277, 129);
             btn8.Name = "btn8";
             btn8.Size = new Size(75, 54);
             btn8.TabIndex = 1;
@@ -173,7 +176,7 @@ namespace AplicativoDesk.Telas
             btn9.BackColor = SystemColors.ControlDarkDark;
             btn9.Font = new Font("Segoe UI", 24F);
             btn9.ForeColor = Color.White;
-            btn9.Location = new Point(172, 112);
+            btn9.Location = new Point(358, 129);
             btn9.Name = "btn9";
             btn9.Size = new Size(75, 54);
             btn9.TabIndex = 1;
@@ -186,7 +189,7 @@ namespace AplicativoDesk.Telas
             btn0.BackColor = SystemColors.ControlDarkDark;
             btn0.Font = new Font("Segoe UI", 24F);
             btn0.ForeColor = Color.White;
-            btn0.Location = new Point(91, 292);
+            btn0.Location = new Point(277, 309);
             btn0.Name = "btn0";
             btn0.Size = new Size(75, 54);
             btn0.TabIndex = 0;
@@ -199,7 +202,7 @@ namespace AplicativoDesk.Telas
             btnComecar.BackColor = SystemColors.ControlDarkDark;
             btnComecar.Font = new Font("Segoe UI", 24F);
             btnComecar.ForeColor = Color.White;
-            btnComecar.Location = new Point(172, 363);
+            btnComecar.Location = new Point(358, 369);
             btnComecar.Name = "btnComecar";
             btnComecar.Size = new Size(75, 54);
             btnComecar.TabIndex = 1;
@@ -212,7 +215,7 @@ namespace AplicativoDesk.Telas
             btnFuncao.BackColor = SystemColors.ControlDarkDark;
             btnFuncao.Font = new Font("Segoe UI", 14F);
             btnFuncao.ForeColor = Color.White;
-            btnFuncao.Location = new Point(10, 362);
+            btnFuncao.Location = new Point(196, 309);
             btnFuncao.Name = "btnFuncao";
             btnFuncao.Size = new Size(75, 54);
             btnFuncao.TabIndex = 1;
@@ -225,7 +228,7 @@ namespace AplicativoDesk.Telas
             btnCancelar.BackColor = SystemColors.ControlDarkDark;
             btnCancelar.Font = new Font("Segoe UI", 24F);
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(91, 363);
+            btnCancelar.Location = new Point(196, 369);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 54);
             btnCancelar.TabIndex = 1;
@@ -233,11 +236,45 @@ namespace AplicativoDesk.Telas
             btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click;
             // 
+            // btnPotencia
+            // 
+            btnPotencia.BackColor = SystemColors.ControlDarkDark;
+            btnPotencia.Font = new Font("Segoe UI", 14F);
+            btnPotencia.ForeColor = Color.White;
+            btnPotencia.Location = new Point(358, 309);
+            btnPotencia.Name = "btnPotencia";
+            btnPotencia.Size = new Size(75, 54);
+            btnPotencia.TabIndex = 1;
+            btnPotencia.Text = "POT";
+            btnPotencia.UseVisualStyleBackColor = false;
+            btnPotencia.Click += btnPotencia_Click;
+            // 
+            // lblPotencia
+            // 
+            lblPotencia.AutoSize = true;
+            lblPotencia.Location = new Point(14, 9);
+            lblPotencia.Name = "lblPotencia";
+            lblPotencia.Size = new Size(71, 15);
+            lblPotencia.TabIndex = 4;
+            lblPotencia.Text = "Potencia: 10";
+            // 
+            // lblTempoPotencia
+            // 
+            lblTempoPotencia.BackColor = SystemColors.ControlDarkDark;
+            lblTempoPotencia.ForeColor = Color.Orange;
+            lblTempoPotencia.Location = new Point(14, 26);
+            lblTempoPotencia.Name = "lblTempoPotencia";
+            lblTempoPotencia.Size = new Size(606, 15);
+            lblTempoPotencia.TabIndex = 5;
+            lblTempoPotencia.Text = "label1";
+            // 
             // frmMicroOndas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(268, 445);
+            ClientSize = new Size(632, 485);
+            Controls.Add(lblTempoPotencia);
+            Controls.Add(lblPotencia);
             Controls.Add(lbVisor);
             Controls.Add(btn9);
             Controls.Add(btn6);
@@ -250,14 +287,18 @@ namespace AplicativoDesk.Telas
             Controls.Add(btn4);
             Controls.Add(btn0);
             Controls.Add(btn2);
+            Controls.Add(btnPotencia);
             Controls.Add(btnFuncao);
             Controls.Add(btn1);
             Font = new Font("Segoe UI", 9F);
+            KeyPreview = true;
             Name = "frmMicroOndas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Micro Ondas";
             Load += frmMicroOndas_Load;
+            KeyDown += frmMicroOndas_KeyDown;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -276,5 +317,8 @@ namespace AplicativoDesk.Telas
         private Button btnComecar;
         private Button btnFuncao;
         private Button btnCancelar;
+        private Button btnPotencia;
+        private Label lblPotencia;
+        private Label lblTempoPotencia;
     }
 }

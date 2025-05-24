@@ -16,8 +16,12 @@ namespace AplicativoDesk.Telas
         int usuario_id;
         int minutos = 0;
         int segundos = 0;
+        int potencia = 10;
         string tempo_digitado = "";
+        string caractere = ".";
+        bool input = false;
         bool pausa = false;
+
 
         public frmMicroOndas(int usuario_id)
         {
@@ -27,6 +31,8 @@ namespace AplicativoDesk.Telas
             timer = new System.Windows.Forms.Timer();
             timer.Interval = 1000; // 1 segundo
             timer.Tick += Tick;
+
+            lblTempoPotencia.Text = "";
 
         }
 
@@ -50,9 +56,12 @@ namespace AplicativoDesk.Telas
 
         private void Tick(object sender, EventArgs e)
         {
+            input = false;
             if (minutos == 0 && segundos == 0)
             {
                 timer.Stop();
+                potencia = 10;
+                lblPotencia.Text = "Potencia: " + potencia;
                 MessageBox.Show("Comida Pronta", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -68,6 +77,7 @@ namespace AplicativoDesk.Telas
             else
             {
                 segundos--;
+                lblTempoPotencia.Text += new string(char.Parse(caractere), potencia) + " ";
             }
 
             lbVisor.Text = $"{minutos:00}:{segundos:00}";
@@ -76,7 +86,7 @@ namespace AplicativoDesk.Telas
         private void AtualizaVisor()
         {
 
-
+            input = true;
             string texto = tempo_digitado.PadLeft(4, '0');
 
             minutos = int.Parse(texto.Substring(0, 2));
@@ -89,20 +99,78 @@ namespace AplicativoDesk.Telas
 
         }
 
+        private void InicioRapido() {
+            if (pausa == false)
+            {
+                lblTempoPotencia.Text = "";
+                segundos += 30;
+                if (segundos >= 60)
+                {
+                    minutos += 1;
+                    segundos -= 60;
+                    if (minutos > 2)
+                    {
+                        minutos = 2;
+                        segundos = 0;
+                    }
+                }
+            }
+        }
+
         private void Ligar()
         {
 
-            tempo_digitado = "";
-            if (minutos == 0 && segundos == 0)
-            {
-                MessageBox.Show("Por favor, digite um tempo válido.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+            if (input == false) {
+                InicioRapido();
             }
 
-            timer.Start();
-            pausa = false;
+            if (minutos >= 2 && segundos > 0 || minutos > 2)
+            {
+                MessageBox.Show("Por favor, digite um valor menor que 2 minutos.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+
+            }
+
+            tempo_digitado = "";
 
             
+            timer.Start();
+            pausa = false;
+            
+
+
+
+        }
+
+
+        private void btnPotencia_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                potencia = int.Parse(tempo_digitado);
+            }
+            catch (Exception err)
+            {
+                potencia = 0;
+            }
+
+            if (potencia >= 1 && potencia <= 10)
+            {
+                lblPotencia.Text = "Potencia: " + potencia;
+                tempo_digitado = "";
+                AtualizaVisor();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, digite uma potência válida de 1 a 10.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                potencia = 10;
+                lblPotencia.Text = "Potencia: " + potencia;
+            }
+
+            if (segundos <= 0 && minutos <=0) {
+                input = false;
+            }
+
 
         }
 
@@ -169,20 +237,55 @@ namespace AplicativoDesk.Telas
         private void btnCancelar_Click(object sender, EventArgs e)
         {
 
-            if (pausa == true)
+            if (pausa == true || segundos <= 0 && minutos <=0)
             {
+                lblTempoPotencia.Text = "";
                 tempo_digitado = "";
                 AtualizaVisor();
+                potencia = 10;
+                lblPotencia.Text = "Potencia: " + potencia;
+                input = false;
+                pausa = false;
+                return;
             }
 
             timer.Stop();
+
             pausa = true;
+
             
+
         }
 
         private void btnComecar_Click(object sender, EventArgs e)
         {
             Ligar();
+        }
+
+        private void frmMicroOndas_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode >= Keys.D0 && e.KeyCode <= Keys.D9) // Teclado normal
+            {
+                int numero = e.KeyCode - Keys.D0;
+                adicionaNumero(numero);
+            }
+            else if (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9) // Teclado numérico
+            {
+                int numero = e.KeyCode - Keys.NumPad0;
+                adicionaNumero(numero);
+            }
+            else if (e.KeyCode == Keys.Decimal) // Começar
+            {
+                Ligar();
+            }
+            else if (e.KeyCode == Keys.Back) // Cancelar
+            {
+                btnCancelar.PerformClick();
+            }
+            else if (e.KeyCode == Keys.P) // Potência
+            {
+                btnPotencia.PerformClick();
+            }
         }
     }
 }
